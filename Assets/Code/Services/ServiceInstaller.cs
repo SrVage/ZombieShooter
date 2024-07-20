@@ -11,6 +11,7 @@ namespace Code.Services
 		{
 			Container.Bind<EcsWorld>().FromInstance(new EcsWorld());
 			Container.Bind<ILoadLevel>().To<LoadLevelService>().AsSingle();
+			Container.Bind<ICreatePlayer>().To<CreatePlayerService>().AsSingle();
 			Container.Bind<IStateMachine>().To<StateMachine>().AsSingle().NonLazy();
 		}
 	}

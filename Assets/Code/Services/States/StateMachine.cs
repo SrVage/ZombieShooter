@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Abstract.Interfaces;
+using Leopotam.Ecs;
 using Zenject;
 
 namespace Code.Services.States
@@ -11,10 +12,10 @@ namespace Code.Services.States
 		private IState _currentState;
 
 		[Inject]
-		public StateMachine(ILoadLevel loadLevel)
+		public StateMachine(ILoadLevel loadLevel, ICreatePlayer createPlayer, EcsWorld world)
 		{
 			_states = new Dictionary<Type, IState>();
-			_states.Add(typeof(LoadState), new LoadState(this, loadLevel));
+			_states.Add(typeof(LoadState), new LoadState(this, loadLevel, createPlayer, world));
 			
 			EnterState<LoadState>();
 		}

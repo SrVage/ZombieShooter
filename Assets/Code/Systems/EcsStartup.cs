@@ -1,3 +1,4 @@
+using Code.Components.States;
 using Leopotam.Ecs;
 using UnityEngine;
 using Zenject;
@@ -17,11 +18,11 @@ namespace Code.Systems {
 #endif
             _systems
                 // register your systems here, for example:
-                //.Add (new InitSystem())
+                .Add (new InitPlayerSystem())
                 // .Add (new TestSystem2 ())
                 
                 // register one-frame components (order is important), for example:
-                // .OneFrame<TestComponent1> ()
+                 .OneFrame<EnterState> ()
                 // .OneFrame<TestComponent2> ()
                 
                 // inject service instances here (order doesn't important), for example:
