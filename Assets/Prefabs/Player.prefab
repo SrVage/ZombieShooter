@@ -937,6 +937,7 @@ GameObject:
   - component: {fileID: -786286062530120248}
   - component: {fileID: -9104274685669555551}
   - component: {fileID: 5018156846264661673}
+  - component: {fileID: 4897361693509651363}
   - component: {fileID: 650835889621845550}
   - component: {fileID: 1062044885638332923}
   m_Layer: 0
@@ -980,11 +981,11 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095047410319508406}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 2b8d11407d58e9c4884c07c672c3efaf, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a5de746b5a5a0dc43a4b40ef05a53c40, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1009,6 +1010,7 @@ MonoBehaviour:
   - {fileID: -786286062530120248}
   - {fileID: -9104274685669555551}
   - {fileID: 5018156846264661673}
+  - {fileID: 4897361693509651363}
 --- !u!114 &3504751184148833511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1059,6 +1061,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _component: {fileID: 650835889621845550}
+--- !u!114 &4897361693509651363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095047410319508406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab90f7f0cf8e41b4a699a76648b0e0d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _component: {fileID: 6576418061975184975}
 --- !u!54 &650835889621845550
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ namespace Code.Systems.Move
 	internal sealed class MoveSystem : IEcsRunSystem
 	{
 		private const float DeadZone = 0.1f;
-		private const float MoveSpeed = 10f;
+		private const float MoveSpeed = 3f;
 		private readonly EcsFilter<RigidBodyComponent, PlayerTag> _player;
 		private readonly EcsFilter<MoveInput> _moveInput;
 		
@@ -23,7 +23,8 @@ namespace Code.Systems.Move
 					{
 						ref var player = ref _player.Get1(pdx).Value;
 						Vector3 move = player.transform.right * input.x + player.transform.forward * input.y;
-						player.MovePosition(player.transform.position + move * MoveSpeed * Time.deltaTime);
+						//player.MovePosition(player.transform.position + move * MoveSpeed * Time.deltaTime);
+						player.velocity = move*MoveSpeed;
 					}
 				}
 			}

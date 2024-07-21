@@ -1,4 +1,5 @@
 using Code.Components.States;
+using Code.Systems.Animation;
 using Code.Systems.Input;
 using Code.Systems.Move;
 using Leopotam.Ecs;
@@ -11,26 +12,20 @@ namespace Code.Systems {
         EcsSystems _systems;
 
         void Start () {
-            // void can be switched to IEnumerator for support coroutines.
-            Debug.Log(_world);
             _systems = new EcsSystems (_world);
 #if UNITY_EDITOR
             Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create (_world);
             Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (_systems);
 #endif
             _systems
-                // register your systems here, for example:
                 .Add (new InitPlayerSystem())
                 .Add (new InputSystem())
                 .Add (new MoveSystem())
                 .Add (new RotateSystem())
+                .Add (new PlayerAnimationSystem())
                 
-                // register one-frame components (order is important), for example:
-                 .OneFrame<EnterState> ()
-                // .OneFrame<TestComponent2> ()
+                .OneFrame<EnterState> ()
                 
-                // inject service instances here (order doesn't important), for example:
-                // .Inject (new CameraService ())
                 // .Inject (new NavMeshSupport ())
                 .Init ();
         }
