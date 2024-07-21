@@ -12,10 +12,10 @@ namespace Code.Services.States
 		private IState _currentState;
 
 		[Inject]
-		public StateMachine(ILoadLevel loadLevel, ICreatePlayer createPlayer, EcsWorld world)
+		public StateMachine(ILoadLevel loadLevel, ICreatePlayer createPlayer, IInitEnemies initEnemies, EcsWorld world)
 		{
 			_states = new Dictionary<Type, IState>();
-			_states.Add(typeof(LoadState), new LoadState(this, loadLevel, createPlayer, world));
+			_states.Add(typeof(LoadState), new LoadState(this, loadLevel, createPlayer, initEnemies, world));
 			
 			EnterState<LoadState>();
 		}

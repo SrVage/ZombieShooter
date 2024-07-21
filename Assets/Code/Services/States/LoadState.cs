@@ -11,13 +11,15 @@ namespace Code.Services.States
 		private readonly IStateMachine _stateMachine;
 		private readonly ILoadLevel _loadLevel;
 		private readonly ICreatePlayer _createPlayer;
+		private readonly IInitEnemies _initEnemies;
 		private readonly EcsWorld _world;
 
-		public LoadState(IStateMachine stateMachine, ILoadLevel loadLevel, ICreatePlayer createPlayer, EcsWorld world)
+		public LoadState(IStateMachine stateMachine, ILoadLevel loadLevel, ICreatePlayer createPlayer, IInitEnemies initEnemies, EcsWorld world)
 		{
 			_stateMachine = stateMachine;
 			_loadLevel = loadLevel;
 			_createPlayer = createPlayer;
+			_initEnemies = initEnemies;
 			_world = world;
 		}
 		
@@ -27,6 +29,7 @@ namespace Code.Services.States
 			await Task.Yield();
 			_loadLevel.LoadLevel();
 			_createPlayer.CreatePlayer();
+			_initEnemies.InitEnemies();
 			var entity = _world.NewEntity();
 			entity.Get<InitialState>();
 			entity.Get<EnterState>();
