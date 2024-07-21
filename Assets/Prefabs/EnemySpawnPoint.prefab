@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6020919734814688034}
   - component: {fileID: 539436753025555854}
   - component: {fileID: 2955770474004620460}
+  - component: {fileID: 445216327248210647}
   m_Layer: 0
   m_Name: EnemySpawnPoint
   m_TagString: Untagged
@@ -51,6 +52,7 @@ MonoBehaviour:
   - {fileID: 6020919734814688034}
   - {fileID: 539436753025555854}
   - {fileID: 2955770474004620460}
+  - {fileID: 445216327248210647}
 --- !u!114 &6020919734814688034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,3 +90,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3014f9225f46475ea08329fe660ee1b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &445216327248210647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2910076589281307697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b22b70cbd75466b8f8c06d325ceb6c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxTime: 5

@@ -8,7 +8,7 @@ namespace Code.Abstract
 	{
 		[SerializeField] private ComponentInstallerBase[] _componentInstallers;
 		
-		public EcsEntity Init(EcsWorld world)
+		public virtual EcsEntity Init(EcsWorld world)
 		{
 			EcsEntity entity = world.NewEntity();
 			ref var gameObjectComponent = ref entity.Get<GameObjectComponent>();

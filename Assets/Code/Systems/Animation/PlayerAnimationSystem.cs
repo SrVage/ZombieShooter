@@ -17,7 +17,6 @@ namespace Code.Systems.Animation
 			{
 				ref var rigidbody = ref _animator.Get1(adx).Value;
 				ref var animator = ref _animator.Get2(adx).Value;
-				Debug.Log(rigidbody.velocity.sqrMagnitude);
 				animator.SetBool(_isMoving, rigidbody.velocity.sqrMagnitude > MinimalSpeed);
 			}
 		}
