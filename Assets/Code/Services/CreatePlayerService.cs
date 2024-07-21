@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using Code.Abstract;
 using Code.Abstract.Interfaces;
 using Code.Config;
 using Leopotam.Ecs;
@@ -26,6 +27,8 @@ namespace Code.Services
 			var player = Object.Instantiate(_playerConfig.PlayerPrefab);
 			player.Init(_world);
 			_virtualCamera.Follow = player.transform;
+			_virtualCamera.LookAt = player.transform;
+			_virtualCamera.GetComponent<EntityInstaller>().Init(_world);
 		}
 	}
 }

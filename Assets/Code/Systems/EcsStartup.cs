@@ -1,4 +1,6 @@
 using Code.Components.States;
+using Code.Systems.Input;
+using Code.Systems.Move;
 using Leopotam.Ecs;
 using UnityEngine;
 using Zenject;
@@ -19,7 +21,9 @@ namespace Code.Systems {
             _systems
                 // register your systems here, for example:
                 .Add (new InitPlayerSystem())
-                // .Add (new TestSystem2 ())
+                .Add (new InputSystem())
+                .Add (new MoveSystem())
+                .Add (new RotateSystem())
                 
                 // register one-frame components (order is important), for example:
                  .OneFrame<EnterState> ()
