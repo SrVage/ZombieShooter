@@ -32,7 +32,7 @@ namespace Code.Systems.Move
 					{
 						ref var camera = ref _camera.Get1(cdx).Composer;
 						camera.m_TrackedObjectOffset = new Vector3(camera.m_TrackedObjectOffset.x,
-							Mathf.Clamp(camera.m_TrackedObjectOffset.y+input.y*RotateYSpeed, 1f, 1.8f), camera.m_TrackedObjectOffset.z);
+							Mathf.Clamp(camera.m_TrackedObjectOffset.y + input.y*RotateYSpeed, 1f, 1.8f), camera.m_TrackedObjectOffset.z);
 					}
 				}
 			}
