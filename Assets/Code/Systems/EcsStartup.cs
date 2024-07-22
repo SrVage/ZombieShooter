@@ -1,7 +1,10 @@
+using Code.Abstract.Interfaces;
+using Code.Components;
 using Code.Components.States;
 using Code.Systems.Animation;
 using Code.Systems.Input;
 using Code.Systems.Move;
+using Code.Systems.Spawn;
 using Leopotam.Ecs;
 using UnityEngine;
 using Zenject;
@@ -9,6 +12,7 @@ using Zenject;
 namespace Code.Systems {
     sealed class EcsStartup : MonoBehaviour {
         [Inject] EcsWorld _world;
+        [Inject] private IPool _pool;
         EcsSystems _systems;
 
         void Start () {
@@ -19,14 +23,21 @@ namespace Code.Systems {
 #endif
             _systems
                 .Add (new InitPlayerSystem())
+                
                 .Add (new InputSystem())
+                
                 .Add (new MoveSystem())
                 .Add (new RotateSystem())
                 .Add (new PlayerAnimationSystem())
                 
-                .OneFrame<EnterState> ()
+                .Add (new CountSpawnTimerSystem())
+                .Add (new SpawnEnemySystem())
+                .Add (new ChangeSpawnSpeedSystem())
                 
-                // .Inject (new NavMeshSupport ())
+                .OneFrame<EnterState> ()
+                .OneFrame<SpawnSignal>()
+                
+                .Inject (_pool)
                 .Init ();
         }
 
