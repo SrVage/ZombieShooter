@@ -1,11 +1,15 @@
 using Code.Abstract.Interfaces;
 using Code.Components;
+using Code.Components.Enemy;
+using Code.Components.Shooting;
 using Code.Components.States;
 using Code.Systems.Animation;
 using Code.Systems.EnemyNavigation;
 using Code.Systems.Input;
 using Code.Systems.Move;
+using Code.Systems.Shooting;
 using Code.Systems.Spawn;
+using Code.Systems.Timers;
 using Leopotam.Ecs;
 using UnityEngine;
 using Zenject;
@@ -23,20 +27,24 @@ namespace Code.Systems {
             Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create (_systems);
 #endif
             _systems
-                .Add (new InitPlayerSystem())
+                .Add(new InitPlayerSystem())
                 
-                .Add (new InputSystem())
+                .Add(new InputSystem())
                 
-                .Add (new MoveSystem())
-                .Add (new RotateSystem())
-                .Add (new PlayerAnimationSystem())
+                .Add(new MoveSystem())
+                .Add(new RotateSystem())
+                .Add(new PlayerAnimationSystem())
                 
-                .Add (new CountSpawnTimerSystem())
-                .Add (new SpawnEnemySystem())
-                .Add (new ChangeSpawnSpeedSystem())
+                .Add(new CountSpawnTimerSystem())
+                .Add(new SpawnEnemySystem())
+                .Add(new ChangeSpawnSpeedSystem())
                 
-                .Add (new CountNavigationTimerSystem())
-                .Add (new SetEnemyDestinationSystem())
+                .Add(new CountTimerWithStartValueSystem<NavigationTimer>(1f))
+                .Add(new SetEnemyDestinationSystem())
+                
+                .Add(new PlayerShootSystem())
+                
+                .Add(new CountTimerSystem<ShootingCooldown>())
                 
                 .OneFrame<EnterState> ()
                 .OneFrame<SpawnSignal>()
