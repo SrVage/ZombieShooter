@@ -2,6 +2,7 @@ using Code.Abstract.Interfaces;
 using Code.Components;
 using Code.Components.States;
 using Code.Systems.Animation;
+using Code.Systems.EnemyNavigation;
 using Code.Systems.Input;
 using Code.Systems.Move;
 using Code.Systems.Spawn;
@@ -33,6 +34,9 @@ namespace Code.Systems {
                 .Add (new CountSpawnTimerSystem())
                 .Add (new SpawnEnemySystem())
                 .Add (new ChangeSpawnSpeedSystem())
+                
+                .Add (new CountNavigationTimerSystem())
+                .Add (new SetEnemyDestinationSystem())
                 
                 .OneFrame<EnterState> ()
                 .OneFrame<SpawnSignal>()

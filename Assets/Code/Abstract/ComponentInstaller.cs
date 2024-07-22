@@ -14,6 +14,7 @@ namespace Code.Abstract
 		{
 			ref var component = ref entity.Get<T2>();
 			component.SetValue(_component);
+			Destroy(this);
 		}
 	}
 }

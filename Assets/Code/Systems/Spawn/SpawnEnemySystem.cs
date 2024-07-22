@@ -19,6 +19,7 @@ namespace Code.Systems.Spawn
 				{
 					ref var enemyTransform = ref enemy.Get<TransformComponent>().Value;
 					enemyTransform.position = spawnPoint.position;
+					enemy.Get<NavMeshComponent>().Value.enabled = true;
 				}
 			}
 		}

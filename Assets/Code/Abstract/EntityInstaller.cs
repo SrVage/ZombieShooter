@@ -11,14 +11,29 @@ namespace Code.Abstract
 		public virtual EcsEntity Init(EcsWorld world)
 		{
 			EcsEntity entity = world.NewEntity();
-			ref var gameObjectComponent = ref entity.Get<GameObjectComponent>();
-			gameObjectComponent.Value = gameObject;
+			
+			AddGameObjectComponent(entity);
+
+			AddAllComponents(entity);
+			
+			gameObject.AddComponent<EntityRef>().Init(entity);
+			Destroy(this);
+			
+			return entity;
+		}
+
+		private void AddAllComponents(EcsEntity entity)
+		{
 			foreach (var componentInstaller in _componentInstallers)
 			{
 				componentInstaller.InitComponent(entity);
 			}
-			Destroy(this);
-			return entity;
+		}
+
+		private void AddGameObjectComponent(EcsEntity entity)
+		{
+			ref var gameObjectComponent = ref entity.Get<GameObjectComponent>();
+			gameObjectComponent.Value = gameObject;
 		}
 	}
 }

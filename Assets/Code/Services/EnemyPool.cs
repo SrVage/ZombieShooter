@@ -16,7 +16,8 @@ namespace Code.Services
 		
 		public EcsEntity? GetEntity()
 		{
-			var entity = _pool.Dequeue();
+			if (!_pool.TryDequeue(out EcsEntity entity)) 
+				return null;
 			entity.Del<InPoolTag>();
 			entity.Get<GameObjectComponent>().Value.SetActive(true);
 			return entity;
