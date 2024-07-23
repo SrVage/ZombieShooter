@@ -43,11 +43,13 @@ namespace Code.Systems {
                 .Add(new SetEnemyDestinationSystem())
                 
                 .Add(new PlayerShootSystem())
+                .Add(new ShootHandleSystem())
                 
                 .Add(new CountTimerSystem<ShootingCooldown>())
                 
                 .OneFrame<EnterState> ()
                 .OneFrame<SpawnSignal>()
+                .OneFrame<ShootSignal>()
                 
                 .Inject (_pool)
                 .Init ();

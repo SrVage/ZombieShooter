@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Code.Abstract
 {
-	internal sealed class EntityRef : MonoBehaviour
+	public sealed class EntityRef : MonoBehaviour
 	{
 		public EcsEntity Entity { get; private set; }
 		
