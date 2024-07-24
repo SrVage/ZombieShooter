@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 2449986858849277875, guid: 8bcc96eec28f9a443b02bb844b0c60d0,
     type: 3}
-  ShootingDistance: 250
-  ShootingCooldown: 1
+  ShootingDistance: 3000
+  ShootingCooldown: 0.5
+  MaxPlayerHealth: 100
+  MaxPlayerAmmo: 30

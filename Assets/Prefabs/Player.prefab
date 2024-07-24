@@ -3324,10 +3324,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4165592940067569768}
     m_Modifications:
+    - target: {fileID: 2564390944558023418, guid: 9c32f2e3b18a3a94fa0cb90a4ac1c2fd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3960879644723491920, guid: 9c32f2e3b18a3a94fa0cb90a4ac1c2fd,
         type: 3}
       propertyPath: m_Name
       value: Assault_Rifle_M4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960879644723491920, guid: 9c32f2e3b18a3a94fa0cb90a4ac1c2fd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4448447718370701034, guid: 9c32f2e3b18a3a94fa0cb90a4ac1c2fd,
         type: 3}
@@ -3393,6 +3403,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7981648180778114324, guid: 9c32f2e3b18a3a94fa0cb90a4ac1c2fd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3960879644723491922, guid: 9c32f2e3b18a3a94fa0cb90a4ac1c2fd, type: 3}

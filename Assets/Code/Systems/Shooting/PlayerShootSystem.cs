@@ -1,4 +1,5 @@
 ﻿using Code.Abstract;
+using Code.Components;
 using Code.Components.Enemy;
 using Code.Components.Shooting;
 using Code.Config;
@@ -10,7 +11,8 @@ namespace Code.Systems.Shooting
 	internal sealed class PlayerShootSystem : IEcsRunSystem, IEcsInitSystem
 	{
 		private readonly PlayerConfig _playerConfig;
-		private readonly EcsFilter<ShootingCooldown> _cooldown;
+		private readonly EcsFilter<PlayerTag, AttackCooldown> _cooldown;
+		private readonly EcsFilter<PlayerTag>.Exclude<AttackCooldown> _player;
 		private readonly EcsWorld _world;
 		private Vector3 _screenCenter;
 		private Camera _camera;
@@ -38,7 +40,11 @@ namespace Code.Systems.Shooting
 					ref var shootSignal = ref _world.NewEntity().Get<ShootSignal>();
 					shootSignal.Value = entityRef.Entity;
 					shootSignal.Collider = hit.collider;
-					_world.NewEntity().Get<ShootingCooldown>().Timer = _playerConfig.ShootingCooldown;
+					foreach (var pdx in _player)
+					{
+						_player.GetEntity(pdx).Get<AttackCooldown>().Timer = _playerConfig.ShootingCooldown;
+						break;
+					}
 				}
 				
 			}

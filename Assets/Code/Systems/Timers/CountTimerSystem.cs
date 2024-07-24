@@ -21,9 +21,14 @@ namespace Code.Systems.Timers
 				timer.Timer -= Time.deltaTime;
 				if (timer.Timer <= 0)
 				{
-					_timer.GetEntity(tdx).Destroy();
+					Destroy(tdx);
 				}
 			}
+		}
+
+		protected virtual void Destroy(int tdx)
+		{
+			_timer.GetEntity(tdx).Del<T>();
 		}
 	}
 }

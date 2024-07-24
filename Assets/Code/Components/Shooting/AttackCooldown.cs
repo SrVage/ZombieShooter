@@ -2,7 +2,7 @@
 
 namespace Code.Components.Shooting
 {
-	public struct ShootingCooldown : ITimerComponent
+	public struct AttackCooldown : ITimerComponent
 	{
 		public float Timer { get; set; }
 	}

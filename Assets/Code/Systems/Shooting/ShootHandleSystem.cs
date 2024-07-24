@@ -1,4 +1,5 @@
-﻿using Code.Components.Health;
+﻿using Code.Abstract.Interfaces;
+using Code.Components.Health;
 using Code.Components.Shooting;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -23,7 +24,10 @@ namespace Code.Systems.Shooting
 					{
 						entity.Get<DeathTag>();
 					}
-					//entity.Get<WoundTag>();
+					else
+					{
+						entity.Get<WoundTag>();
+					}
 				}
 				else if (collider as SphereCollider)
 				{
