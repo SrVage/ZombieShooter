@@ -7,7 +7,7 @@ namespace Code.Systems.EnemyNavigation
 	internal sealed class SetEnemyDestinationSystem : IEcsRunSystem
 	{
 		private readonly EcsFilter<TransformComponent, PlayerTag> _playerTag;
-		private readonly EcsFilter<NavMeshComponent>.Exclude<InPoolTag> _enemy;
+		private readonly EcsFilter<NavMeshComponent>.Exclude<InPoolTag, DeathTimer> _enemy;
 		private readonly EcsFilter<NavigationTimer> _timer;
 		
 		public void Run()

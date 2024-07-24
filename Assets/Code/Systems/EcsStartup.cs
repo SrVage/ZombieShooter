@@ -3,7 +3,9 @@ using Code.Components;
 using Code.Components.Enemy;
 using Code.Components.Shooting;
 using Code.Components.States;
+using Code.Config;
 using Code.Systems.Animation;
+using Code.Systems.Enemy;
 using Code.Systems.EnemyNavigation;
 using Code.Systems.Input;
 using Code.Systems.Move;
@@ -19,6 +21,8 @@ namespace Code.Systems {
     sealed class EcsStartup : MonoBehaviour {
         [Inject] EcsWorld _world;
         [Inject] private IPool _pool;
+        [Inject] private EnemyConfig _enemyConfig;
+        [Inject] private PlayerConfig _playerConfig;
         EcsSystems _systems;
 
         void Start () {
@@ -47,6 +51,10 @@ namespace Code.Systems {
                 .Add(new PlayerShootSystem())
                 .Add(new ShootHandleSystem())
                 
+                .Add(new DeathAnimationSystem())
+                .Add(new DeathHandleSystem())
+                .Add(new ReturnToPoolSystem())
+                
                 .Add(new CountTimerSystem<ShootingCooldown>())
                 
                 .OneFrame<EnterState> ()
@@ -54,6 +62,8 @@ namespace Code.Systems {
                 .OneFrame<ShootSignal>()
                 
                 .Inject (_pool)
+                .Inject(_enemyConfig)
+                .Inject(_playerConfig)
                 .Init ();
         }
 

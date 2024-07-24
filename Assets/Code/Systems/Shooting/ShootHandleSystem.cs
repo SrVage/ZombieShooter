@@ -28,6 +28,7 @@ namespace Code.Systems.Shooting
 				else if (collider as SphereCollider)
 				{
 					entity.Get<DeathTag>();
+					entity.Get<HeadshotTag>();
 				}
 			}
 		}

@@ -7,5 +7,7 @@ namespace Code.Config
 	public class PlayerConfig : ScriptableObject
 	{
 		public EntityInstaller PlayerPrefab;
+		public float ShootingDistance;
+		public float ShootingCooldown;
 	}
 }

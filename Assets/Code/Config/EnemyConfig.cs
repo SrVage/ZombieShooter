@@ -8,5 +8,6 @@ namespace Code.Config
 	{
 		public EntityInstaller EnemyPrefab;
 		public int MaxEnemyCount;
+		public float InitialHealth;
 	}
 }

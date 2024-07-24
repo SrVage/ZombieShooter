@@ -1,5 +1,7 @@
 ﻿using Code.Abstract.Interfaces;
 using Code.Components;
+using Code.Components.Health;
+using Code.Config;
 using Leopotam.Ecs;
 
 namespace Code.Systems.Spawn
@@ -7,6 +9,7 @@ namespace Code.Systems.Spawn
 	internal sealed class SpawnEnemySystem : IEcsRunSystem
 	{
 		private readonly EcsFilter<SpawnSignal> _spawnSignal;
+		private readonly EnemyConfig _enemyConfig;
 		private readonly IPool _pool;
 		
 		public void Run()
@@ -20,6 +23,7 @@ namespace Code.Systems.Spawn
 					ref var enemyTransform = ref enemy.Get<TransformComponent>();
 					enemyTransform.Value.position = spawnPoint.position;
 					enemy.Get<NavMeshComponent>().Value.enabled = true;
+					enemy.Get<HealthPoint>().Value = _enemyConfig.InitialHealth;
 				}
 			}
 		}
