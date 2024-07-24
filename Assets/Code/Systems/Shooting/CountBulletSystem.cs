@@ -5,7 +5,7 @@ using Leopotam.Ecs;
 
 namespace Code.Systems.Shooting
 {
-	internal sealed class RechargeAmmoSystem : IEcsRunSystem
+	internal sealed class CountBulletSystem : IEcsRunSystem
 	{
 		private readonly IDisplayPlayerAmmo _displayPlayerAmmo;
 		private readonly PlayerConfig _playerConfig;

@@ -18,6 +18,8 @@ namespace Code.Services
 		{
 			_maxPlayerHealth = playerConfig.MaxPlayerHealth;
 			_maxPlayerAmmo = playerConfig.MaxPlayerAmmo;
+			ChangeHealth(_maxPlayerHealth);
+			ChangeAmmo(_maxPlayerAmmo);
 		}
 
 		public void ChangeHealth(float health)
@@ -29,6 +31,12 @@ namespace Code.Services
 		public void ChangeAmmo(int ammo)
 		{
 			String ammoString = string.Format($"{ammo}/{_maxPlayerAmmo}");
+			ChangePlayerAmmo?.Invoke(ammoString);
+		}
+		
+		public void ChangeAmmo(float time)
+		{
+			String ammoString = string.Format($"R: {time:F1}");
 			ChangePlayerAmmo?.Invoke(ammoString);
 		}
 	}

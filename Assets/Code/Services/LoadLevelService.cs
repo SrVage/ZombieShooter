@@ -29,7 +29,6 @@ namespace Code.Services
 		private void InitializeEcsObjects()
 		{
 			var installers = _level.GetComponentsInChildren<EntityInstaller>();
-			Debug.Log(installers.Length);
 			foreach (var installer in installers)
 			{
 				installer.Init(_world);

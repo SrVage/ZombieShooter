@@ -5,9 +5,9 @@ namespace Code.Systems.Timers
 {
 	internal class CountTimerWithDestroySystem<T> : CountTimerSystem<T> where T : struct, ITimerComponent
 	{
-		protected override void Destroy(int tdx)
+		protected override void Destroy(int id)
 		{
-			_timer.GetEntity(tdx).Destroy();
+			_destroyTimer.GetEntity(id).Destroy();
 		}
 	}
 }

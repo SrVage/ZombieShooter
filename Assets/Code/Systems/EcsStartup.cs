@@ -52,7 +52,8 @@ namespace Code.Systems {
                 
                 .Add(new PlayerShootSystem())
                 .Add(new ShootHandleSystem())
-                .Add(new RechargeAmmoSystem())
+                .Add(new CountBulletSystem())
+                .Add(new RechargeBulletSystem())
                 
                 .Add(new EnemyAttackSystem())
                 .Add(new AnimationEnemyAttackSystem())

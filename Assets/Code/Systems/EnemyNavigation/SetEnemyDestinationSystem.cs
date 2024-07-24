@@ -8,11 +8,11 @@ namespace Code.Systems.EnemyNavigation
 	{
 		private readonly EcsFilter<TransformComponent, PlayerTag> _playerTag;
 		private readonly EcsFilter<NavMeshComponent>.Exclude<InPoolTag, DeathTimer> _enemy;
-		private readonly EcsFilter<NavigationTimer> _timer;
+		private readonly EcsFilter<NavigationTimer, FinishTimerTag> _timer;
 		
 		public void Run()
 		{
-			if (!_timer.IsEmpty())
+			if (_timer.IsEmpty())
 				return;
 			foreach (var pdx in _playerTag)
 			{
