@@ -1,16 +1,13 @@
 ﻿using Code.Abstract.Interfaces;
-using UnityEngine;
 using UnityEngine.AI;
 
 namespace Code.Components
 {
-	public struct NavMeshComponent : IValueComponent<NavMeshAgent>
+	public struct NavMeshComponent : IMovableComponent<NavMeshAgent>
 	{
-		public NavMeshAgent Value;
-
-		public void SetValue(NavMeshAgent value)
-		{
-			Value = value;
-		}
+		public NavMeshAgent Value { get; set; }
+		
+		public float GetSpeed() => 
+			Value.velocity.sqrMagnitude;
 	}
 }

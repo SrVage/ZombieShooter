@@ -12,6 +12,7 @@ using Code.Systems.Spawn;
 using Code.Systems.Timers;
 using Leopotam.Ecs;
 using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
 
 namespace Code.Systems {
@@ -33,7 +34,8 @@ namespace Code.Systems {
                 
                 .Add(new MoveSystem())
                 .Add(new RotateSystem())
-                .Add(new PlayerAnimationSystem())
+                .Add(new WalkAnimationSystem<RigidBodyComponent, PlayerTag, Rigidbody>())
+                .Add(new WalkAnimationSystem<NavMeshComponent, EnemyTag, NavMeshAgent>())
                 
                 .Add(new CountSpawnTimerSystem())
                 .Add(new SpawnEnemySystem())

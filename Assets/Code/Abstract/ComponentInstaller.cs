@@ -13,7 +13,7 @@ namespace Code.Abstract
 		public override void InitComponent(EcsEntity entity)
 		{
 			ref var component = ref entity.Get<T2>();
-			component.SetValue(_component);
+			component.Value = _component;
 			Destroy(this);
 		}
 	}

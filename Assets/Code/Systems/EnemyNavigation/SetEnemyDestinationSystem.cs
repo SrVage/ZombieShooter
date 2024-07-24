@@ -16,11 +16,11 @@ namespace Code.Systems.EnemyNavigation
 				return;
 			foreach (var pdx in _playerTag)
 			{
-				ref var playerTransform = ref _playerTag.Get1(pdx).Value;
+				ref var playerTransform = ref _playerTag.Get1(pdx);
 				foreach (var edx in _enemy)
 				{
-					ref var agent = ref _enemy.Get1(edx).Value;
-					agent.SetDestination(playerTransform.position);
+					ref var agent = ref _enemy.Get1(edx);
+					agent.Value.SetDestination(playerTransform.Value.position);
 				}
 			}
 		}

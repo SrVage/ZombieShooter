@@ -17,8 +17,8 @@ namespace Code.Systems.Spawn
 				var enemy = _pool.GetEntity().GetValueOrDefault();
 				if (enemy != default)
 				{
-					ref var enemyTransform = ref enemy.Get<TransformComponent>().Value;
-					enemyTransform.position = spawnPoint.position;
+					ref var enemyTransform = ref enemy.Get<TransformComponent>();
+					enemyTransform.Value.position = spawnPoint.position;
 					enemy.Get<NavMeshComponent>().Value.enabled = true;
 				}
 			}

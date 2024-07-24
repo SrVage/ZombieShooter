@@ -1,4 +1,5 @@
-﻿using Code.Components.Shooting;
+﻿using Code.Components.Health;
+using Code.Components.Shooting;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -16,7 +17,13 @@ namespace Code.Systems.Shooting
 				ref var collider = ref _shootSignal.Get1(sdx).Collider;
 				if (collider as BoxCollider)
 				{
-					entity.Get<WoundTag>();
+					ref var hp = ref entity.Get<HealthPoint>().Value;
+					hp-= 20;
+					if (hp <= 0)
+					{
+						entity.Get<DeathTag>();
+					}
+					//entity.Get<WoundTag>();
 				}
 				else if (collider as SphereCollider)
 				{

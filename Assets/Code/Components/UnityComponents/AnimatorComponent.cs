@@ -5,10 +5,6 @@ namespace Code.Components
 {
 	public struct AnimatorComponent : IValueComponent<Animator>
 	{
-		public Animator Value;
-		public void SetValue(Animator value)
-		{
-			Value = value;
-		}
+		public Animator Value { get; set; }
 	}
 }

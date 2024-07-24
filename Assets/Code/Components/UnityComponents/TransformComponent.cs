@@ -5,11 +5,6 @@ namespace Code.Components
 {
 	public struct TransformComponent : IValueComponent<Transform>
 	{
-		public Transform Value;
-
-		public void SetValue(Transform value)
-		{
-			Value = value;
-		}
+		public Transform Value { get; set; }
 	}
 }

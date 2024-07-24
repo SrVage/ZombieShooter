@@ -5,13 +5,17 @@ namespace Code.Components
 {
 	public struct CinemachineComponent : IValueComponent<CinemachineVirtualCamera>
 	{
-		public CinemachineVirtualCamera Value;
-		public CinemachineComposer Composer;
-
-		public void SetValue(CinemachineVirtualCamera value)
+		public CinemachineVirtualCamera Value
 		{
-			Value = value;
-			Composer = value.GetCinemachineComponent<CinemachineComposer>();
+			readonly get => _value;
+			set
+			{
+				_value = value;
+				Composer = value.GetCinemachineComponent<CinemachineComposer>();
+			}
 		}
+
+		public CinemachineComposer Composer;
+		private CinemachineVirtualCamera _value;
 	}
 }

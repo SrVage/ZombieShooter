@@ -2,8 +2,8 @@
 
 namespace Code.Abstract.Interfaces
 {
-	public interface IValueComponent<in T> where T:Component
+	public interface IValueComponent<T> where T:Component
 	{
-		void SetValue(T value);
+		public T Value { get; set; }
 	}
 }

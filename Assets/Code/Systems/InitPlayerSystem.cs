@@ -17,11 +17,11 @@ namespace Code.Systems
 
 			foreach (var pdx in _player)
 			{
-				ref var transform = ref _player.Get1(pdx).Value;
+				ref var transform = ref _player.Get1(pdx);
 				foreach (var sdx in _spawnPoint)
 				{
-					ref var spawnPoint = ref _spawnPoint.Get1(sdx).Value;
-					transform.position = spawnPoint.position;
+					ref var spawnPoint = ref _spawnPoint.Get1(sdx);
+					transform.Value.position = spawnPoint.Value.position;
 					break;
 				}
 				_player.GetEntity(pdx).Del<NeedInitialTag>();

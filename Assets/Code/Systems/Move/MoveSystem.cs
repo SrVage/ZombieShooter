@@ -21,10 +21,10 @@ namespace Code.Systems.Move
 				{
 					foreach (var pdx in _player)
 					{
-						ref var player = ref _player.Get1(pdx).Value;
-						Vector3 move = player.transform.right * input.x + player.transform.forward * input.y;
-						//player.MovePosition(player.transform.position + move * MoveSpeed * Time.deltaTime);
-						player.velocity = move*MoveSpeed;
+						ref var player = ref _player.Get1(pdx);
+						var playerTransform = player.Value.transform;
+						Vector3 move = playerTransform.right * input.x + playerTransform.forward * input.y;
+						player.Value.velocity = move*MoveSpeed;
 					}
 				}
 			}

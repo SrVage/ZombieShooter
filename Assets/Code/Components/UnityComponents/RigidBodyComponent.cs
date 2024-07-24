@@ -3,13 +3,11 @@ using UnityEngine;
 
 namespace Code.Components
 {
-	public struct RigidBodyComponent : IValueComponent<Rigidbody>
+	public struct RigidBodyComponent : IMovableComponent<Rigidbody>
 	{
-		public Rigidbody Value;
-
-		public void SetValue(Rigidbody value)
-		{
-			Value = value;
-		}
+		public Rigidbody Value { get; set; }
+		
+		public float GetSpeed() => 
+			Value.velocity.sqrMagnitude;
 	}
 }

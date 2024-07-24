@@ -23,8 +23,8 @@ namespace Code.Systems.Move
 				{
 					foreach (var pdx in _player)
 					{
-						ref var player = ref _player.Get1(pdx).Value;
-						player.Rotate(Vector3.up, input.x*RotateXSpeed*Time.deltaTime);
+						ref var player = ref _player.Get1(pdx);
+						player.Value.Rotate(Vector3.up, input.x*RotateXSpeed*Time.deltaTime);
 					}
 
 					foreach (var cdx in _camera)
