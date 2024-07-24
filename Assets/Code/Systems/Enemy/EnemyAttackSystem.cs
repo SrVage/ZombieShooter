@@ -12,7 +12,7 @@ namespace Code.Systems.Enemy
 	{
 		private readonly IDisplayPlayerHealth _displayPlayerHealth;
 		private readonly EcsFilter<TransformComponent, HealthPoint, PlayerTag> _player;
-		private readonly EcsFilter<TransformComponent, EnemyTag>.Exclude<AttackCooldown> _enemy;
+		private readonly EcsFilter<TransformComponent, EnemyTag>.Exclude<AttackCooldown, DeathTimer> _enemy;
 		
 		public void Run()
 		{

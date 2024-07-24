@@ -1,7 +1,9 @@
-﻿namespace Code.Components.Shooting
+﻿using Code.Abstract.Interfaces;
+
+namespace Code.Components.Shooting
 {
-	public struct RechargeTimer
+	public struct RechargeTimer : ITimerComponent
 	{
-		public float Value;
+		public float Timer { get; set; }
 	}
 }

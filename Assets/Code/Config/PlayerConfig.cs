@@ -9,6 +9,7 @@ namespace Code.Config
 		public EntityInstaller PlayerPrefab;
 		public float ShootingDistance;
 		public float ShootingCooldown;
+		public float RechargeTime;
 		public float MaxPlayerHealth;
 		public int MaxPlayerAmmo;
 	}

@@ -2,7 +2,7 @@
 
 namespace Code.Abstract.Interfaces
 {
-	public interface IValueComponent<T> where T:Component
+	public interface IValueComponent<T>
 	{
 		public T Value { get; set; }
 	}

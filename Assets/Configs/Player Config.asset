@@ -16,5 +16,6 @@ MonoBehaviour:
     type: 3}
   ShootingDistance: 3000
   ShootingCooldown: 0.5
+  RechargeTime: 5
   MaxPlayerHealth: 100
   MaxPlayerAmmo: 30

@@ -24,6 +24,7 @@ namespace Code.Systems {
         [Inject] private EnemyConfig _enemyConfig;
         [Inject] private PlayerConfig _playerConfig;
         [Inject] private IDisplayPlayerHealth _displayPlayerHealth;
+        [Inject] private IDisplayPlayerAmmo _displayPlayerAmmo;
         EcsSystems _systems;
 
         void Start () {
@@ -51,6 +52,7 @@ namespace Code.Systems {
                 
                 .Add(new PlayerShootSystem())
                 .Add(new ShootHandleSystem())
+                .Add(new RechargeAmmoSystem())
                 
                 .Add(new EnemyAttackSystem())
                 .Add(new AnimationEnemyAttackSystem())
@@ -61,6 +63,7 @@ namespace Code.Systems {
                 .Add(new ReturnToPoolSystem())
                 
                 .Add(new CountTimerSystem<AttackCooldown>())
+                .Add(new CountTimerSystem<RechargeTimer>())
                 
                 .OneFrame<EnterState> ()
                 .OneFrame<SpawnSignal>()
@@ -72,6 +75,7 @@ namespace Code.Systems {
                 .Inject(_enemyConfig)
                 .Inject(_playerConfig)
                 .Inject(_displayPlayerHealth)
+                .Inject(_displayPlayerAmmo)
                 .Init ();
         }
 

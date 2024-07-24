@@ -10,9 +10,11 @@ namespace Code.Systems.Shooting
 {
 	internal sealed class PlayerShootSystem : IEcsRunSystem, IEcsInitSystem
 	{
+		private const float StartPointOffset = 3;
 		private readonly PlayerConfig _playerConfig;
 		private readonly EcsFilter<PlayerTag, AttackCooldown> _cooldown;
-		private readonly EcsFilter<PlayerTag>.Exclude<AttackCooldown> _player;
+		private readonly EcsFilter<PlayerTag, RechargeTimer> _rechargeTimer;
+		private readonly EcsFilter<PlayerTag> _player;
 		private readonly EcsWorld _world;
 		private Vector3 _screenCenter;
 		private Camera _camera;
@@ -25,9 +27,10 @@ namespace Code.Systems.Shooting
 
 		public void Run()
 		{
-			if (!_cooldown.IsEmpty())
+			if (!_cooldown.IsEmpty() || !_rechargeTimer.IsEmpty())
 				return;
 			Ray ray = _camera.ScreenPointToRay(_screenCenter);
+			ray.origin += ray.direction*StartPointOffset;
 			if (Physics.Raycast(ray, out RaycastHit hit, _playerConfig.ShootingDistance))
 			{
 				GameObject hitObject = hit.collider.gameObject;
@@ -46,7 +49,6 @@ namespace Code.Systems.Shooting
 						break;
 					}
 				}
-				
 			}
 		}
 	}
