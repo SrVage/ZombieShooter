@@ -1,11 +1,9 @@
 ﻿using Code.Abstract.Interfaces;
-using Code.Components.Enemy;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace Code.Systems.Timers
 {
-	internal sealed class CountTimerWithStartValueSystem<T> : CountTimerWithDestroySystem<T> where T : struct, ITimerComponent
+	internal sealed class CountTimerWithStartValueSystem<TTimer, TState> : CountTimerWithDestroySystem<TTimer, TState> where TTimer : struct, ITimerComponent where TState : struct
 	{
 		private readonly float _startValue;
 		private readonly EcsWorld _world;
@@ -19,7 +17,7 @@ namespace Code.Systems.Timers
 		{
 			if (_timer.IsEmpty() && _destroyTimer.IsEmpty())
 			{
-				_world.NewEntity().Get<T>().Timer = _startValue;
+				_world.NewEntity().Get<TTimer>().Timer = _startValue;
 			}
 			base.ExecuteTimer();
 		}

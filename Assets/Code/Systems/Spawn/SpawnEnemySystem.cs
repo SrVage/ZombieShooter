@@ -1,18 +1,19 @@
 ﻿using Code.Abstract.Interfaces;
 using Code.Components;
 using Code.Components.Health;
+using Code.Components.States;
 using Code.Config;
 using Leopotam.Ecs;
 
 namespace Code.Systems.Spawn
 {
-	internal sealed class SpawnEnemySystem : IEcsRunSystem
+	internal sealed class SpawnEnemySystem : RunInStateSystem<PlayState>
 	{
 		private readonly EcsFilter<SpawnSignal> _spawnSignal;
 		private readonly EnemyConfig _enemyConfig;
 		private readonly IPool _pool;
 		
-		public void Run()
+		protected override void Execute()		
 		{
 			foreach (var sdx in _spawnSignal)
 			{

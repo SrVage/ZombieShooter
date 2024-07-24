@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Code.Systems.Timers
 {
-	internal class CountTimerSystem<T> : IEcsRunSystem where T : struct, ITimerComponent
+	internal class CountTimerSystem<TTimer, TState> : RunInStateSystem<TState> where TTimer : struct, ITimerComponent where TState : struct
 	{
-		protected readonly EcsFilter<T>.Exclude<FinishTimerTag> _timer;
-		protected readonly EcsFilter<T, FinishTimerTag> _destroyTimer;
+		protected readonly EcsFilter<TTimer>.Exclude<FinishTimerTag> _timer;
+		protected readonly EcsFilter<TTimer, FinishTimerTag> _destroyTimer;
 		
-		public void Run()
+		protected override void Execute()
 		{
 			DestroyTimer();
 			ExecuteTimer();
@@ -39,7 +39,7 @@ namespace Code.Systems.Timers
 
 		protected virtual void Destroy(int id)
 		{
-			_destroyTimer.GetEntity(id).Del<T>();
+			_destroyTimer.GetEntity(id).Del<TTimer>();
 			_destroyTimer.GetEntity(id).Del<FinishTimerTag>();
 		}
 	}

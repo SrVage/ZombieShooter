@@ -1,18 +1,19 @@
 ﻿using Code.Abstract.Interfaces;
 using Code.Components.Shooting;
+using Code.Components.States;
 using Code.Config;
 using Leopotam.Ecs;
 
 namespace Code.Systems.Shooting
 {
-	internal sealed class CountBulletSystem : IEcsRunSystem
+	internal sealed class CountBulletSystem : RunInStateSystem<PlayState>
 	{
 		private readonly IDisplayPlayerAmmo _displayPlayerAmmo;
 		private readonly PlayerConfig _playerConfig;
 		private readonly EcsFilter<ShootSignal> _signal;
 		private readonly EcsFilter<BulletCount> _player;
 
-		public void Run()
+		protected override void Execute()		
 		{
 			if (_signal.IsEmpty())
 				return;

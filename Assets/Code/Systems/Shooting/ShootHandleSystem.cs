@@ -1,16 +1,17 @@
 ﻿using Code.Abstract.Interfaces;
 using Code.Components.Health;
 using Code.Components.Shooting;
+using Code.Components.States;
 using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Code.Systems.Shooting
 {
-	internal sealed class ShootHandleSystem : IEcsRunSystem
+	internal sealed class ShootHandleSystem : RunInStateSystem<PlayState>
 	{
 		private readonly EcsFilter<ShootSignal> _shootSignal;
 		
-		public void Run()
+		protected override void Execute()		
 		{
 			foreach (var sdx in _shootSignal)
 			{
@@ -18,22 +19,32 @@ namespace Code.Systems.Shooting
 				ref var collider = ref _shootSignal.Get1(sdx).Collider;
 				if (collider as BoxCollider)
 				{
-					ref var hp = ref entity.Get<HealthPoint>().Value;
-					hp-= 20;
-					if (hp <= 0)
-					{
-						entity.Get<DeathTag>();
-					}
-					else
-					{
-						entity.Get<WoundTag>();
-					}
+					AimWasBody(entity);
 				}
 				else if (collider as SphereCollider)
 				{
-					entity.Get<DeathTag>();
-					entity.Get<HeadshotTag>();
+					AimWasHead(entity);
 				}
+			}
+		}
+
+		private static void AimWasHead(EcsEntity entity)
+		{
+			entity.Get<DeathTag>();
+			entity.Get<HeadshotTag>();
+		}
+
+		private static void AimWasBody(EcsEntity entity)
+		{
+			ref var hp = ref entity.Get<HealthPoint>().Value;
+			hp-= 20;
+			if (hp <= 0)
+			{
+				entity.Get<DeathTag>();
+			}
+			else
+			{
+				entity.Get<WoundTag>();
 			}
 		}
 	}

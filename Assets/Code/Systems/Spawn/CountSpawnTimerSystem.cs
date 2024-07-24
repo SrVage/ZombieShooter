@@ -1,15 +1,16 @@
 ﻿using Code.Components;
+using Code.Components.States;
 using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Code.Systems.Spawn
 {
-	internal sealed class CountSpawnTimerSystem : IEcsRunSystem
+	internal sealed class CountSpawnTimerSystem : RunInStateSystem<PlayState>
 	{
 		private readonly EcsFilter<SpawnTimer, TransformComponent> _spawnTimer;
 		private readonly EcsWorld _world;
 		
-		public void Run()
+		protected override void Execute()		
 		{
 			foreach (var sdx in _spawnTimer)
 			{

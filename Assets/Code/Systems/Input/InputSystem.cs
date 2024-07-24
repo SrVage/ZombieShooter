@@ -1,11 +1,12 @@
-﻿using Code.Systems.Input.Component;
+﻿using Code.Components.States;
+using Code.Systems.Input.Component;
 using Leopotam.Ecs;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Code.Systems.Input
 {
-	internal sealed class InputSystem : IEcsInitSystem, IEcsRunSystem
+	internal sealed class InputSystem : RunInStateSystem<PlayState>, IEcsInitSystem
 	{
 		private InputAction _moveAction;
 		private InputAction _rotateAction;
@@ -39,7 +40,7 @@ namespace Code.Systems.Input
 			inputEntity.Get<RotateInput>();
 		}
 
-		public void Run()
+		protected override void Execute()		
 		{
 			foreach (var idx in _input)
 			{

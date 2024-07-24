@@ -3,18 +3,19 @@ using Code.Components;
 using Code.Components.Enemy;
 using Code.Components.Health;
 using Code.Components.Shooting;
+using Code.Components.States;
 using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Code.Systems.Enemy
 {
-	internal sealed class EnemyAttackSystem : IEcsRunSystem
+	internal sealed class EnemyAttackSystem : RunInStateSystem<PlayState>
 	{
 		private readonly IDisplayPlayerHealth _displayPlayerHealth;
 		private readonly EcsFilter<TransformComponent, HealthPoint, PlayerTag> _player;
 		private readonly EcsFilter<TransformComponent, EnemyTag>.Exclude<AttackCooldown, DeathTimer> _enemy;
 		
-		public void Run()
+		protected override void Execute()		
 		{
 			foreach (var pdx in _player)
 			{

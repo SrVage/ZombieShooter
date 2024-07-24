@@ -1,16 +1,17 @@
 ﻿using Code.Abstract.Interfaces;
 using Code.Components.Enemy;
+using Code.Components.States;
 using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Code.Systems.Enemy
 {
-	internal sealed class ReturnToPoolSystem : IEcsRunSystem
+	internal sealed class ReturnToPoolSystem : RunInStateSystem<PlayState>
 	{
 		private readonly IPool _pool;
 		private readonly EcsFilter<DeathTimer> _timer;
 		
-		public void Run()
+		protected override void Execute()		
 		{
 			foreach (var tdx in _timer)
 			{

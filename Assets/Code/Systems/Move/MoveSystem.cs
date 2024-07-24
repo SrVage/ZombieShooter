@@ -1,18 +1,19 @@
 ﻿using Code.Components;
+using Code.Components.States;
 using Code.Systems.Input.Component;
 using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Code.Systems.Move
 {
-	internal sealed class MoveSystem : IEcsRunSystem
+	internal sealed class MoveSystem : RunInStateSystem<PlayState>
 	{
 		private const float DeadZone = 0.1f;
 		private const float MoveSpeed = 3f;
 		private readonly EcsFilter<RigidBodyComponent, PlayerTag> _player;
 		private readonly EcsFilter<MoveInput> _moveInput;
 		
-		public void Run()
+		protected override void Execute()		
 		{
 			foreach (var mdx in _moveInput)
 			{

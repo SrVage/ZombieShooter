@@ -3,7 +3,7 @@ using Leopotam.Ecs;
 
 namespace Code.Systems.Timers
 {
-	internal class CountTimerWithDestroySystem<T> : CountTimerSystem<T> where T : struct, ITimerComponent
+	internal class CountTimerWithDestroySystem<TTimer, TState> : CountTimerSystem<TTimer, TState> where TTimer : struct, ITimerComponent where TState : struct
 	{
 		protected override void Destroy(int id)
 		{

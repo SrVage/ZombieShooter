@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Code.Abstract.Interfaces;
+using Code.Components.States;
 using Leopotam.Ecs;
 using Zenject;
 
@@ -16,7 +17,8 @@ namespace Code.Services.States
 		{
 			_states = new Dictionary<Type, IState>();
 			_states.Add(typeof(LoadState), new LoadState(this, loadLevel, createPlayer, initEnemies, world));
-			
+			_states.Add(typeof(PlayState), new PlayState(this, world));
+			_states.Add(typeof(LoseState), new LoseState(this, world));
 			EnterState<LoadState>();
 		}
 

@@ -2,13 +2,14 @@
 using Code.Components;
 using Code.Components.Enemy;
 using Code.Components.Shooting;
+using Code.Components.States;
 using Code.Config;
 using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Code.Systems.Shooting
 {
-	internal sealed class PlayerShootSystem : IEcsRunSystem, IEcsInitSystem
+	internal sealed class PlayerShootSystem : RunInStateSystem<PlayState>, IEcsInitSystem
 	{
 		private const float StartPointOffset = 3;
 		private readonly PlayerConfig _playerConfig;
@@ -25,7 +26,7 @@ namespace Code.Systems.Shooting
 			_camera = Camera.main;
 		}
 
-		public void Run()
+		protected override void Execute()		
 		{
 			if (!_cooldown.IsEmpty() || !_rechargeTimer.IsEmpty())
 				return;

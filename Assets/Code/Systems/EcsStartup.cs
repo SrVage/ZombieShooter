@@ -9,6 +9,7 @@ using Code.Systems.Enemy;
 using Code.Systems.EnemyNavigation;
 using Code.Systems.Input;
 using Code.Systems.Move;
+using Code.Systems.Player;
 using Code.Systems.Shooting;
 using Code.Systems.Spawn;
 using Code.Systems.Timers;
@@ -25,6 +26,7 @@ namespace Code.Systems {
         [Inject] private PlayerConfig _playerConfig;
         [Inject] private IDisplayPlayerHealth _displayPlayerHealth;
         [Inject] private IDisplayPlayerAmmo _displayPlayerAmmo;
+        [Inject] private IPlayerDeath _playerDeath;
         EcsSystems _systems;
 
         void Start () {
@@ -47,7 +49,7 @@ namespace Code.Systems {
                 .Add(new SpawnEnemySystem())
                 .Add(new ChangeSpawnSpeedSystem())
                 
-                .Add(new CountTimerWithStartValueSystem<NavigationTimer>(1f))
+                .Add(new CountTimerWithStartValueSystem<NavigationTimer, PlayState>(1f))
                 .Add(new SetEnemyDestinationSystem())
                 
                 .Add(new PlayerShootSystem())
@@ -63,8 +65,10 @@ namespace Code.Systems {
                 .Add(new DeathHandleSystem())
                 .Add(new ReturnToPoolSystem())
                 
-                .Add(new CountTimerSystem<AttackCooldown>())
-                .Add(new CountTimerSystem<RechargeTimer>())
+                .Add(new CountTimerSystem<AttackCooldown, PlayState>())
+                .Add(new CountTimerSystem<RechargeTimer, PlayState>())
+                
+                .Add(new PlayerDeathSystem())
                 
                 .OneFrame<EnterState> ()
                 .OneFrame<SpawnSignal>()
@@ -77,6 +81,7 @@ namespace Code.Systems {
                 .Inject(_playerConfig)
                 .Inject(_displayPlayerHealth)
                 .Inject(_displayPlayerAmmo)
+                .Inject(_playerDeath)
                 .Init ();
         }
 

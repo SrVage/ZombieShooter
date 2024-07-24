@@ -1,11 +1,12 @@
 ﻿using Code.Components;
+using Code.Components.States;
 using Code.Systems.Input.Component;
 using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Code.Systems.Move
 {
-	internal sealed class RotateSystem : IEcsRunSystem
+	internal sealed class RotateSystem : RunInStateSystem<PlayState>
 	{
 		private const float DeadZone = 0.05f;
 		private const float RotateXSpeed = 120f;
@@ -14,7 +15,7 @@ namespace Code.Systems.Move
 		private readonly EcsFilter<CinemachineComponent> _camera;
 		private readonly EcsFilter<RotateInput> _moveInput;
 		
-		public void Run()
+		protected override void Execute()		
 		{
 			foreach (var mdx in _moveInput)
 			{

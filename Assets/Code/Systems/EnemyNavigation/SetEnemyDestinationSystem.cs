@@ -1,16 +1,17 @@
 ﻿using Code.Components;
 using Code.Components.Enemy;
+using Code.Components.States;
 using Leopotam.Ecs;
 
 namespace Code.Systems.EnemyNavigation
 {
-	internal sealed class SetEnemyDestinationSystem : IEcsRunSystem
+	internal sealed class SetEnemyDestinationSystem : RunInStateSystem<PlayState>
 	{
 		private readonly EcsFilter<TransformComponent, PlayerTag> _playerTag;
 		private readonly EcsFilter<NavMeshComponent>.Exclude<InPoolTag, DeathTimer> _enemy;
 		private readonly EcsFilter<NavigationTimer, FinishTimerTag> _timer;
 		
-		public void Run()
+		protected override void Execute()		
 		{
 			if (_timer.IsEmpty())
 				return;
