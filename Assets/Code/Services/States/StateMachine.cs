@@ -13,12 +13,14 @@ namespace Code.Services.States
 		private IState _currentState;
 
 		[Inject]
-		public StateMachine(ILoadLevel loadLevel, ICreatePlayer createPlayer, IInitEnemies initEnemies, EcsWorld world)
+		public StateMachine(ILoadLevel loadLevel, ICreatePlayer createPlayer, 
+			IInitEnemies initEnemies, IDisplayHud displayHud,
+			IDisplayLose displayLose, EcsWorld world)
 		{
 			_states = new Dictionary<Type, IState>();
 			_states.Add(typeof(LoadState), new LoadState(this, loadLevel, createPlayer, initEnemies, world));
-			_states.Add(typeof(PlayState), new PlayState(this, world));
-			_states.Add(typeof(LoseState), new LoseState(this, world));
+			_states.Add(typeof(PlayState), new PlayState(this, displayHud, world));
+			_states.Add(typeof(LoseState), new LoseState(this, displayLose, world));
 			EnterState<LoadState>();
 		}
 

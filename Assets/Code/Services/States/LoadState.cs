@@ -32,7 +32,6 @@ namespace Code.Services.States
 			_loadLevel.LoadLevel();
 			_createPlayer.CreatePlayer();
 			_initEnemies.InitEnemies();
-			Debug.Log(_state);
 			_state = _world.NewEntity();
 			_state.Get<InitialState>();
 			_state.Get<EnterState>();

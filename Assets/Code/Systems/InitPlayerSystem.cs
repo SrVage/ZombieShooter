@@ -1,4 +1,6 @@
-﻿using Code.Components;
+﻿using Code.Abstract.Interfaces;
+using Code.Components;
+using Code.Components.Health;
 using Code.Components.Shooting;
 using Code.Components.States;
 using Code.Config;
@@ -9,8 +11,10 @@ namespace Code.Systems
 	internal sealed class InitPlayerSystem : IEcsRunSystem
 	{
 		private readonly PlayerConfig _playerConfig;
-		private readonly EcsFilter<InitialState, EnterState> _signal;
-		private readonly EcsFilter<TransformComponent, PlayerTag, NeedInitialTag> _player;
+		private readonly IDisplayPlayerHealth _displayPlayerHealth;
+		private readonly IDisplayPlayerAmmo _displayPlayerAmmo;
+		private readonly EcsFilter<PlayState, EnterState> _signal;
+		private readonly EcsFilter<TransformComponent, PlayerTag> _player;
 		private readonly EcsFilter<TransformComponent, PlayerTag, SpawnPointTag> _spawnPoint;
 		
 		public void Run()
@@ -32,6 +36,10 @@ namespace Code.Systems
 				ref var bulletCount = ref playerEntity.Get<BulletCount>();
 				bulletCount.MaxBulletCount = _playerConfig.MaxPlayerAmmo;
 				bulletCount.Value = _playerConfig.MaxPlayerAmmo;
+				ref var playerHealth = ref playerEntity.Get<HealthPoint>().Value;
+				playerHealth = _playerConfig.MaxPlayerHealth;
+				_displayPlayerHealth.ChangeHealth(playerHealth);
+				_displayPlayerAmmo.ChangeAmmo(bulletCount.Value);
 				playerEntity.Del<NeedInitialTag>();
 			}
 		}

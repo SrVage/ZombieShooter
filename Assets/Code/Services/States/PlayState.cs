@@ -9,12 +9,14 @@ namespace Code.Services.States
 	public class PlayState : IState
 	{
 		private readonly IStateMachine _stateMachine;
+		private readonly IDisplayHud _displayHud;
 		private readonly EcsWorld _world;
 		private EcsEntity _state;
 
-		public PlayState(IStateMachine stateMachine, EcsWorld world)
+		public PlayState(IStateMachine stateMachine, IDisplayHud displayHud, EcsWorld world)
 		{
 			_stateMachine = stateMachine;
+			_displayHud = displayHud;
 			_world = world;
 		}
 		
@@ -24,10 +26,12 @@ namespace Code.Services.States
 			_state = _world.NewEntity();
 			_state.Get<Components.States.PlayState>();
 			_state.Get<EnterState>();
+			_displayHud.ShowPlay();
 		}
 
 		public void Exit()
 		{
+			_displayHud.HidePlay();
 			if (!_state.IsNull() && _state.IsAlive()) 
 			{
 				_state.Destroy();

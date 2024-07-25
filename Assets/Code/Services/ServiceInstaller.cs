@@ -16,6 +16,7 @@ namespace Code.Services
 			Container.Bind<IInitEnemies>().To<InitEnemiesService>().AsSingle();
 			Container.Bind<IPool>().To<EnemyPool>().AsSingle();
 			Container.BindInterfacesTo<DisplayPlayerStatsService>().AsSingle();
+			Container.BindInterfacesTo<DisplayStatesScreen>().AsSingle();
 			Container.Bind<IStateMachine>().To<StateMachine>().AsSingle().NonLazy();
 			Container.Bind<IPlayerDeath>().To<PlayerDeathService>().AsSingle();
 		}

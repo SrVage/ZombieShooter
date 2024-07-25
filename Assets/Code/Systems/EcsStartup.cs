@@ -10,6 +10,7 @@ using Code.Systems.EnemyNavigation;
 using Code.Systems.Input;
 using Code.Systems.Move;
 using Code.Systems.Player;
+using Code.Systems.Restart;
 using Code.Systems.Shooting;
 using Code.Systems.Spawn;
 using Code.Systems.Timers;
@@ -69,6 +70,8 @@ namespace Code.Systems {
                 .Add(new CountTimerSystem<RechargeTimer, PlayState>())
                 
                 .Add(new PlayerDeathSystem())
+                
+                .Add(new BackEnemyToPoolSystem())
                 
                 .OneFrame<EnterState> ()
                 .OneFrame<SpawnSignal>()
