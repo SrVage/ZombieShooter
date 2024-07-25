@@ -5,6 +5,7 @@ using Code.Components.Shooting;
 using Code.Components.States;
 using Code.Config;
 using Code.Systems.Animation;
+using Code.Systems.Audio;
 using Code.Systems.Enemy;
 using Code.Systems.EnemyNavigation;
 using Code.Systems.Input;
@@ -28,6 +29,7 @@ namespace Code.Systems {
         [Inject] private IDisplayPlayerHealth _displayPlayerHealth;
         [Inject] private IDisplayPlayerAmmo _displayPlayerAmmo;
         [Inject] private IPlayerDeath _playerDeath;
+        [Inject] private IPlaySound _playSound;
         EcsSystems _systems;
 
         void Start () {
@@ -57,6 +59,8 @@ namespace Code.Systems {
                 .Add(new ShootHandleSystem())
                 .Add(new CountBulletSystem())
                 .Add(new RechargeBulletSystem())
+                .Add(new PlayShotAudioSystem())
+                .Add(new PlayRechargeAudioSystem())
                 
                 .Add(new EnemyAttackSystem())
                 .Add(new AnimationEnemyAttackSystem())
@@ -78,6 +82,7 @@ namespace Code.Systems {
                 .OneFrame<ShootSignal>()
                 .OneFrame<WoundTag>()
                 .OneFrame<EnemyAttackSignal>()
+                .OneFrame<StartRechargeSignal>()
                 
                 .Inject (_pool)
                 .Inject(_enemyConfig)
@@ -85,6 +90,7 @@ namespace Code.Systems {
                 .Inject(_displayPlayerHealth)
                 .Inject(_displayPlayerAmmo)
                 .Inject(_playerDeath)
+                .Inject(_playSound)
                 .Init ();
         }
 

@@ -2,7 +2,6 @@
 using Code.Services.States;
 using Leopotam.Ecs;
 using Zenject;
-using PlayState = Code.Components.States.PlayState;
 
 namespace Code.Services
 {
@@ -18,6 +17,7 @@ namespace Code.Services
 			Container.BindInterfacesTo<DisplayPlayerStatsService>().AsSingle();
 			Container.BindInterfacesTo<DisplayStatesScreen>().AsSingle();
 			Container.Bind<IStateMachine>().To<StateMachine>().AsSingle().NonLazy();
+			Container.Bind<IPlaySound>().To<PlaySoundService>().AsSingle().NonLazy();
 			Container.Bind<IPlayerDeath>().To<PlayerDeathService>().AsSingle();
 		}
 	}

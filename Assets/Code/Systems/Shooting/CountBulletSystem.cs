@@ -12,6 +12,7 @@ namespace Code.Systems.Shooting
 		private readonly PlayerConfig _playerConfig;
 		private readonly EcsFilter<ShootSignal> _signal;
 		private readonly EcsFilter<BulletCount> _player;
+		protected readonly EcsWorld _world;
 
 		protected override void Execute()		
 		{
@@ -26,6 +27,7 @@ namespace Code.Systems.Shooting
 				{
 					bulletCount = _player.Get1(pdx).MaxBulletCount;
 					_player.GetEntity(pdx).Get<RechargeTimer>().Timer = _playerConfig.RechargeTime;
+					_world.NewEntity().Get<StartRechargeSignal>();
 				}
 			}
 		}
